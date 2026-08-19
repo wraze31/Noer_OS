@@ -1,0 +1,32 @@
+name: Build Custom Live OS (Hacker Edition)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies for building ISO
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y debootstrap squashfs-tools grub-pc-bin grub-efi-amd64-bin mtools xorriso dosfstools
+
+    - name: Run Build Script
+      run: |
+        sudo bash scripts/build.sh
+
+    - name: Upload ISO Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CustomOS-Live
+        path: CustomOS.iso
+        retention-days: 7
