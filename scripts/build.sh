@@ -22,7 +22,7 @@ sudo mount -t sysfs /sys $CHROOT_DIR/sys
 echo "[*] Step 3: Copy customization script and assets into chroot"
 sudo cp scripts/customize.sh $CHROOT_DIR/tmp/
 sudo chmod +x $CHROOT_DIR/tmp/customize.sh
-sudo cp -r assets $CHROOT_DIR/tmp/
+[ -d assets ] && sudo cp -r assets $CHROOT_DIR/tmp/ || true
 
 # Копируем настройки DNS, чтобы работал интернет внутри chroot
 sudo cp /etc/resolv.conf $CHROOT_DIR/etc/
