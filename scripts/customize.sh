@@ -29,13 +29,11 @@ chmod 755 msfinstall
 ./msfinstall || echo "Ошибка при установке MSF, пропускаем..."
 rm msfinstall
 
-echo "=> Установка кастомных скриптов (God Mode OSINT)..."
-# Так как у нас нет прямого доступа к файлу username_tracker.py на Github, мы создадим заглушку или скачаем его
-# Пользователь сможет закинуть его на флешку после записи.
+echo "=> Установка кастомных скриптов (Noer OSINT)..."
 mkdir -p /opt/osint
 cat <<EOF > /opt/osint/welcome.txt
-Добро пожаловать в персональную хакерскую ОС!
-Твои OSINT-скрипты готовы к работе.
+Добро пожаловать в Noer OS!
+Система загружена и готова к работе.
 EOF
 
 echo "=> Настройка внешнего вида..."
@@ -54,14 +52,14 @@ cat <<EOF > /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 EOF
 
 echo "=> Настройка автологина для Live-пользователя..."
-# Создаем кастомного пользователя 'hacker'
-useradd -m -s /bin/bash hacker
-usermod -aG sudo hacker
-echo "hacker:kali" | chpasswd
+# Создаем кастомного пользователя 'noer'
+useradd -m -s /bin/bash noer
+usermod -aG sudo noer
+echo "noer:kali" | chpasswd
 # Настройка LightDM для автологина
 cat <<EOF > /etc/lightdm/lightdm.conf.d/50-autologin.conf
 [Seat:*]
-autologin-user=hacker
+autologin-user=noer
 autologin-user-timeout=0
 EOF
 

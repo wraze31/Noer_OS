@@ -5,8 +5,8 @@ set -x
 export DEBIAN_FRONTEND=noninteractive
 
 # Устанавливаем переменные
-CHROOT_DIR="custom-os"
-IMAGE_NAME="CustomOS.iso"
+CHROOT_DIR="noer-os"
+IMAGE_NAME="NoerOS.iso"
 STAGING_DIR="staging"
 
 echo "[*] Step 1: Bootstrap Ubuntu 24.04 (Noble)"
@@ -53,7 +53,7 @@ search --set=root --file /casper/vmlinuz
 insmod all_video
 set default="0"
 set timeout=5
-menuentry "Start Custom Hacker OS (Live)" {
+menuentry "Start Noer OS (Live)" {
     linux /casper/vmlinuz boot=casper quiet splash
     initrd /casper/initrd
 }
