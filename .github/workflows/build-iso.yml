@@ -17,8 +17,9 @@ jobs:
 
     - name: Install dependencies for building ISO
       run: |
-        sudo apt-get update
-        sudo apt-get install -y debootstrap squashfs-tools grub-pc-bin grub-efi-amd64-bin mtools xorriso dosfstools
+        export DEBIAN_FRONTEND=noninteractive
+        sudo -E apt-get update
+        sudo -E apt-get install -y debootstrap squashfs-tools grub-pc-bin grub-efi-amd64-bin mtools xorriso dosfstools
 
     - name: Run Build Script
       run: |
