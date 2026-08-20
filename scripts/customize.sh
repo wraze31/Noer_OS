@@ -19,8 +19,12 @@ apt-get install -y linux-image-generic initramfs-tools casper dbus systemd-sysv
 echo "=> Установка KDE Plasma (Красивая графика) и драйверов..."
 apt-get install -y kde-plasma-desktop sddm konsole dolphin kate plasma-nm xserver-xorg-video-all xserver-xorg-input-all pulseaudio
 
-echo "=> Установка хакерского софта..."
-apt-get install -y nmap wireshark aircrack-ng git curl wget vim python3 python3-pip htop nano iproute2 net-tools unzip
+echo "=> Установка хакерского софта и OSINT-инструментов..."
+apt-get install -y nmap wireshark aircrack-ng git curl wget vim python3 python3-pip htop nano iproute2 net-tools unzip sqlmap john hydra nikto
+
+# Установка OSINT утилит
+pip3 install spiderfoot sherlock --break-system-packages || true
+
 curl -fsSL https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
 chmod 755 msfinstall
 ./msfinstall || true
